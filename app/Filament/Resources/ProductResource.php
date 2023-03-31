@@ -9,6 +9,7 @@ use App\Filament\Resources\CategoryResource;
 use App\Models\Category;
 use App\Models\Product;
 use Closure;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Str;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
@@ -84,14 +85,15 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('category.category'),
                 Tables\Columns\TextColumn::make('price'),
                 Tables\Columns\TextColumn::make('image'),
+                TextColumn::make('name')->searchable()
 
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\DeleteAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -110,7 +112,7 @@ class ProductResource extends Resource
         return [
             'index' => Pages\ListProducts::route('/'),
             'create' => Pages\CreateProduct::route('/create'),
-            // 'view' => Pages\ViewProduct::route('/{record}'),
+            'view' => Pages\ViewProduct::route('/{record}'),
             'edit' => Pages\EditProduct::route('/{record}/edit'),
         ];
     }

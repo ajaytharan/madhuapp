@@ -18,7 +18,7 @@ class SliderResource extends Resource
 {
     protected static ?string $model = Slider::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-device-tablet';
 
     public static function form(Form $form): Form
     {
@@ -39,8 +39,8 @@ class SliderResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\DeleteAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -59,7 +59,7 @@ class SliderResource extends Resource
         return [
             'index' => Pages\ListSliders::route('/'),
             'create' => Pages\CreateSlider::route('/create'),
-            // 'view' => Pages\ViewSlider::route('/{record}'),
+            'view' => Pages\ViewSlider::route('/{record}'),
             'edit' => Pages\EditSlider::route('/{record}/edit'),
         ];
     }

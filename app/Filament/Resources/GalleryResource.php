@@ -21,7 +21,7 @@ class GalleryResource extends Resource
     public static ?string $label = 'Image';
     protected static ?string $pluralModelLabel = 'Gallery';
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-camera';
 
     public static function form(Form $form): Form
     {
@@ -43,8 +43,8 @@ class GalleryResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\DeleteAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -63,7 +63,7 @@ class GalleryResource extends Resource
         return [
             'index' => Pages\ListGalleries::route('/'),
             'create' => Pages\CreateGallery::route('/create'),
-            // 'view' => Pages\ViewGallery::route('/{record}'),
+            'view' => Pages\ViewGallery::route('/{record}'),
             'edit' => Pages\EditGallery::route('/{record}/edit'),
         ];
     }

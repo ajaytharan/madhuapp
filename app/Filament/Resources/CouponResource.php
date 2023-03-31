@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Forms\Components\DatePicker;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -18,7 +19,10 @@ class CouponResource extends Resource
 {
     protected static ?string $model = Coupon::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $pluralModelLabel = 'Coupon';
+
+
+    protected static ?string $navigationIcon = 'heroicon-o-ticket';
 
     public static function form(Form $form): Form
     {
@@ -55,6 +59,7 @@ class CouponResource extends Resource
                 Tables\Columns\TextColumn::make('discount_%'),
                 Tables\Columns\TextColumn::make('start_coupon'),
                 Tables\Columns\TextColumn::make('expired_coupon'),
+                TextColumn::make('coupon_code')->searchable()
                 // Tables\Columns\TextColumn::make('default_discount') ,
 
                 // Tables\Columns\TextColumn::make('coupon_code'),
@@ -72,8 +77,8 @@ class CouponResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\DeleteAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -92,7 +97,7 @@ class CouponResource extends Resource
         return [
             'index' => Pages\ListCoupons::route('/'),
             'create' => Pages\CreateCoupon::route('/create'),
-            // 'view' => Pages\ViewCoupon::route('/{record}'),
+            'view' => Pages\ViewCoupon::route('/{record}'),
             'edit' => Pages\EditCoupon::route('/{record}/edit'),
         ];
     }

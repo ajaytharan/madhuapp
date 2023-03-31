@@ -12,6 +12,7 @@ use Filament\Forms\Components\Select;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -50,14 +51,16 @@ class PaymentResource extends Resource
                 Tables\Columns\TextColumn::make('order_summery'),
                 Tables\Columns\TextColumn::make('coupon'),
                 Tables\Columns\TextColumn::make('total'),
+                TextColumn::make('customer')->searchable()
+
 
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\DeleteAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -76,7 +79,7 @@ class PaymentResource extends Resource
         return [
             'index' => Pages\ListPayments::route('/'),
             'create' => Pages\CreatePayment::route('/create'),
-            // 'view' => Pages\ViewPayment::route('/{record}'),
+            'view' => Pages\ViewPayment::route('/{record}'),
             'edit' => Pages\EditPayment::route('/{record}/edit'),
         ];
     }

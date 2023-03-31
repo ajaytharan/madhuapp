@@ -19,7 +19,7 @@ class OrderstatusResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Order status';
 
-    protected static ?string $navigationIcon = 'heroicon-o-shopping-bag';
+    protected static ?string $navigationIcon = 'heroicon-o-truck';
 
 
     public static function form(Form $form): Form
@@ -43,8 +43,8 @@ class OrderstatusResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\DeleteAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -63,7 +63,7 @@ class OrderstatusResource extends Resource
         return [
             'index' => Pages\ListOrderstatuses::route('/'),
             'create' => Pages\CreateOrderstatus::route('/create'),
-            // 'view' => Pages\ViewOrderstatus::route('/{record}'),
+            'view' => Pages\ViewOrderstatus::route('/{record}'),
             'edit' => Pages\EditOrderstatus::route('/{record}/edit'),
         ];
     }

@@ -19,7 +19,7 @@ class AddressResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Address';
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-map';
 
     public static function form(Form $form): Form
     {
@@ -79,6 +79,7 @@ class AddressResource extends Resource
         return [
             'index' => Pages\ListAddresses::route('/'),
             'create' => Pages\CreateAddress::route('/create'),
+            'view' => Pages\ViewAddress::route('/{record}'),
             'edit' => Pages\EditAddress::route('/{record}/edit'),
         ];
     }
